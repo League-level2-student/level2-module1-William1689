@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GuestBook implements ActionListener {
 	JFrame frame = new JFrame();
+	int guestNum = 1;
 	JButton addName = new JButton();
 	JButton viewNames = new JButton();
 	JPanel panel = new JPanel();
@@ -47,8 +49,23 @@ public class GuestBook implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		JButton b = (JButton)e.getSource();
+		if(addName == b) {
+			String name = JOptionPane.showInputDialog("What name do you want to add?");
+			names.add(name);
+			guestNum++;
+		}
+		if(viewNames == b) {
+			String viewNames = "";
+			for(int i = 0; i<names.size();i++) {
+				viewNames = viewNames.concat("Guest #"+(i+1)+": "+names.get(i)+"\n");
+			}
+			
+			
+			JOptionPane.showMessageDialog(null, viewNames);
+			//	names.add("Guest # "+guestNum+": "+name+"\n");
+		}
 	}
 }
